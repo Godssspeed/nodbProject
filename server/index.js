@@ -8,7 +8,8 @@ const {
   readTopTwenty,
   deleteCoins,
   editCoins,
-  addCoins
+  addCoins,
+  getMemes
 } = require("./controllers/controller");
 const port = 3001;
 
@@ -21,6 +22,8 @@ app.use(cors());
 // app.get("/api/coins", read);
 
 app.get("/api/coins", readTopTwenty);
+
+app.get("/api/images", getMemes);
 
 app.delete("/api/coins/:symbol", deleteCoins);
 // app.get("/api/coins/all", readAllCoins);

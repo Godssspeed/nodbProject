@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import Button from "./Button";
-import Tracker from "./Tracker";
+import React from "react";
 import "./Card.css";
 
 const Card = props => {

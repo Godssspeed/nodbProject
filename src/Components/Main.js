@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import Card from "./Cards/Card";
 import Header from "./Header";
+import Footer from "./Footer";
+import Meme from "./Meme";
 import "./Main.css";
 // import "./Card.css";
 
@@ -10,12 +12,13 @@ class Main extends Component {
     super();
     this.state = {
       topTwenty: [],
-      topFifty: [],
       display: false,
       userInput: "",
       coinName: "",
       coinPrice: "",
-      coinCap: ""
+      coinCap: "",
+      images: [],
+      meme: []
     };
   }
 
@@ -29,8 +32,13 @@ class Main extends Component {
 
   componentDidMount() {
     axios.get("/api/coins").then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       this.setState({ topTwenty: response.data });
+    });
+
+    axios.get("/api/images").then(response => {
+      console.log(response.data);
+      this.setState({ images: response });
     });
 
     this.handleDelete = symbol => {
@@ -81,10 +89,18 @@ class Main extends Component {
           this.setState({ topTwenty: response.data });
         });
     };
+
+    this.handleDisplay = () => {
+      this.setState({ display: true });
+      if (this.state.display) {
+        this.setState({ display: false });
+      }
+      // console.log(random);
+    };
   }
 
   render() {
-    const { coinName, coinPrice, coinCap } = this.state;
+    const { coinName, coinPrice, coinCap, meme, images } = this.state;
     const key = {
       symbol: coinName,
       price: coinPrice,
@@ -106,9 +122,47 @@ class Main extends Component {
         />
       );
     });
-    console.log(this.state.userInput);
+    console.log(this.state.userInput, meme);
+
     return (
-      <div className="body">
+      <div>
+        {this.state.display ? (
+          <div>
+            <Header
+              coinNameFn={this.handleCoinName}
+              coinPriceFn={this.handleCoinPrice}
+              coinCapFn={this.handleCoinCap}
+              addCoinFn={this.handleAddCoin}
+              newCoinObj={key}
+              displayFn={this.handleDisplay}
+            />
+            <Meme images={images} />
+            <Footer />
+          </div>
+        ) : (
+          <div className="body">
+            <Header
+              coinNameFn={this.handleCoinName}
+              coinPriceFn={this.handleCoinPrice}
+              coinCapFn={this.handleCoinCap}
+              addCoinFn={this.handleAddCoin}
+              newCoinObj={key}
+              displayFn={this.handleDisplay}
+            />
+            <div className="display-false">
+              <div className="display">{dataDisplay}</div>
+              <Footer />
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+export default Main;
+
+/* <div className="body">
         <Header
           coinNameFn={this.handleCoinName}
           coinPriceFn={this.handleCoinPrice}
@@ -116,10 +170,8 @@ class Main extends Component {
           addCoinFn={this.handleAddCoin}
           newCoinObj={key}
         />
-        <div className="display">{dataDisplay}</div>
-      </div>
-    );
-  }
-}
-
-export default Main;
+        <div className='display-false'>
+          <div className="display">{dataDisplay}</div>
+          <Footer />
+        </div>
+      </div> */

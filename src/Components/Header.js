@@ -2,12 +2,11 @@ import React from "react";
 import "./Header.css";
 
 const Header = props => {
-  console.log(newCoinObj);
-  let { coinNameFn, coinPriceFn, coinCapFn, addCoinFn, newCoinObj } = props;
+  let { coinNameFn, addCoinFn, newCoinObj, displayFn } = props;
   return (
     <div className="header">
       <h1>
-        Crypto Coin <span>Cap</span>
+        Crypto Coin <span onClick={() => displayFn()}>Cap</span>
       </h1>
       {/* <span>by Will Young</span> */}
       {/* <span>Add New Coin</span> */}

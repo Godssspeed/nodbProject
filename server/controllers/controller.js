@@ -1,7 +1,11 @@
 const axios = require("axios");
 let coins = [];
 const trackCoins = [];
-
+const images = [
+  "https://pics.me.me/thats-my-secret-cap-m-always-tired-26231151.png",
+  "https://media.makeameme.org/created/Thats-My-Secret-imu189.jpg",
+  "https://pics.ballmemes.com/thats-my-secret-cap-give-it-back-38428625.png"
+];
 module.exports = {
   //   read: (req, res) => {
   //     axios.get("https://chasing-coins.com/api/v1/coins").then(res => {
@@ -43,6 +47,11 @@ module.exports = {
     console.log(req.body);
     coins.unshift(req.body);
     res.json(coins);
+  },
+
+  getMemes: (req, res) => {
+    axios.get("/api/images");
+    res.json(images);
   }
 
   // //   readAllCoins: (req, res) => {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 // import axios from "axios";
-import Header from "./Components/Header";
 import Main from "./Components/Main";
 // import logo from "./logo.svg";
 import "./reset.css";

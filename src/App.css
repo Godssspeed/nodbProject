@@ -78,3 +78,7 @@ button {
 button:active {
   background: #3acc8a;
 }
+
+.footer {
+  height: 20px;
+}
