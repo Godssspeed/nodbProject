@@ -3,7 +3,7 @@ let coins = [];
 const trackCoins = [];
 const images = [
   "https://pics.me.me/thats-my-secret-cap-m-always-tired-26231151.png",
-  "https://media.makeameme.org/created/Thats-My-Secret-imu189.jpg",
+  "https://images-cdn.9gag.com/photo/a4GNZmZ_700b.jpg",
   "https://pics.ballmemes.com/thats-my-secret-cap-give-it-back-38428625.png"
 ];
 module.exports = {

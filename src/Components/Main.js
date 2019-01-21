@@ -68,8 +68,8 @@ class Main extends Component {
     // Add New Coin Section
 
     this.handleCoinName = a => {
-      let randomPrice = Math.floor(Math.random() * 25000 + 1);
-      let randomCap = Math.floor(Math.random() * 9999999999 + 250000);
+      let randomPrice = Math.random() * 100 + 0.00000002;
+      let randomCap = Math.random() * 99999999 + 250000;
 
       console.log(randomPrice, randomCap);
       this.setState({ coinPrice: randomPrice, coinCap: randomCap });
